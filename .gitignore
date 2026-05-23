@@ -1,3 +1,32 @@
-node_modules
+# dependencies
+node_modules/
+
+# env
 .env
-dist
+.env.local.example
+.env.example
+
+# build
+dist/
+build/
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# system
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# docker
+postgres_data/
+redis_data/
+
+# certificates
+*.pem
+*.key
