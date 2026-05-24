@@ -21,7 +21,7 @@ export async function streamClaude(
         parts: [{ text: m.text }],
       }))
 
-    const stream = await ai.models.generateContentStream({
+    const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: apiMessages,
       config: {
@@ -30,18 +30,10 @@ export async function streamClaude(
       },
     })
 
-    let full = ''
+    const text = response.text || ''
 
-    for await (const chunk of stream) {
-      const text = chunk.text
-
-      if (text) {
-        full += text
-        onChunk(full)
-      }
-    }
-
-    onDone(full)
+    onChunk(text)
+    onDone(text)
   } catch (e) {
     console.error(e)
     onError('Не удалось подключиться к Gemini API')
